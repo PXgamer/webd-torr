@@ -23,6 +23,7 @@ class newContentHelper
     public function viewReplace($templateContent, $torrents)
     {
         $latestMovies = self::getLatestMovies();
+        $latestTv = self::getLatestTv();
         $lm = '';
         if (isset($latestMovies->results)) {
             $lm .= '
@@ -39,12 +40,37 @@ class newContentHelper
       </div>';
         }
 
-        return preg_replace('/\{\{newContentMovies\}\}/', $lm, $templateContent);
+        $templateContent = preg_replace('/\{\{newContentMovies\}\}/', $lm, $templateContent);
+
+        $lm = '';
+        if (isset($latestTv->results)) {
+            $lm .= '
+<div class="panel panel-default">
+  <div class="panel-heading"><h4>Popular TV Shows</h4></div>
+  <div class="panel-body">
+  ';
+            foreach ($latestTv->results as $tvShow) {
+                $lm .= '
+              <img src="https://image.tmdb.org/t/p/w154/'.$tvShow->poster_path.'" alt="'.$tvShow->name.'" class="img-thumbnail">
+            ';
+            }
+            $lm .= '</div>
+      </div>';
+        }
+
+        return preg_replace('/\{\{newContentTv\}\}/', $lm, $templateContent);
     }
 
     public static function getLatestMovies()
     {
         $url = self::$base_url.'/'.self::$contentTypes['movie'].'/'.self::$endpoints['popular'].self::$end_url;
+
+        return json_decode(self::get($url));
+    }
+
+    public static function getLatestTv()
+    {
+        $url = self::$base_url.'/'.self::$contentTypes['tv'].'/'.self::$endpoints['popular'].self::$end_url;
 
         return json_decode(self::get($url));
     }
