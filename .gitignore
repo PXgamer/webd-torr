@@ -1,0 +1,4 @@
+/vendor
+/composer.lock
+/src/Templates_c
+/db.sqlite

@@ -1,0 +1,17 @@
+{
+  "name": "pxgamer/webd-torr",
+  "description": "An open source, moddable torrent client.",
+  "type": "project",
+  "license": "MIT",
+  "minimum-stability": "dev",
+  "require": {
+    "nezamy/route": "^1.0",
+    "smarty/smarty": "3.1.x"
+  },
+  "autoload": {
+    "psr-4": {
+      "pxgamer\\wdTorr\\": "src/",
+      "pxgamer\\Generic\\": "src/"
+    }
+  }
+}
