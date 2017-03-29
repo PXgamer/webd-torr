@@ -79,12 +79,18 @@
         <h4>External Links</h4>
         <ul class="list-inline">
             {if $meta->homepage}
-                <li><a href="{$meta->homepage}" target="_blank">Homepage</a></li>
+                <li>
+                    <a class="btn btn-xs btn-default" href="{$meta->homepage}" target="_blank">Homepage</a>
+                </li>
             {/if}
             {if isset($meta->imdb_id)}
-                <li><a href="//imdb.com/title/{$meta->imdb_id}" target="_blank">IMDb</a></li>
+                <li>
+                    <a class="btn btn-xs btn-default" href="//imdb.com/title/{$meta->imdb_id}" target="_blank">IMDb</a>
+                </li>
             {/if}
-            <li><a href="//tmdb.org/{$type}/{$meta->id}" target="_blank">TMDb</a></li>
+            <li>
+                <a class="btn btn-xs btn-default" href="//tmdb.org/{$type}/{$meta->id}" target="_blank">TMDb</a>
+            </li>
         </ul>
     </div>
 </div>
