@@ -25,11 +25,23 @@ class Settings extends Inclusions
             $stmt->execute();
         }
 
+        $torrent_sites = [
+            (object)[
+                'class' => 'ExtraTorrent',
+                'name' => 'ExtraTorrent',
+            ],
+            (object)[
+                'class' => 'WorldWideTorrents',
+                'name' => 'WorldWide Torrents',
+            ]
+        ];
+
         $this->S->display(
             'settings/index.tpl',
             [
                 'tmdb_key' => $this->SL3->querySingle('SELECT tmdb_api_key FROM settings'),
-                'default_torrent_site' => $this->SL3->querySingle('SELECT default_torrent_site FROM settings')
+                'default_torrent_site' => $this->SL3->querySingle('SELECT default_torrent_site FROM settings'),
+                'torrent_sites' => $torrent_sites
             ]
         );
     }

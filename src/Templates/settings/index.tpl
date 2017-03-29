@@ -9,7 +9,11 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label for="default_torrent_site">Default Torrent Site:</label>
-                    <input class="form-control" type="text" name="default_torrent_site" id="default_torrent_site" value="{$default_torrent_site}">
+                    <select class="form-control" name="default_torrent_site" id="default_torrent_site">
+                        {foreach $torrent_sites as $site}
+                            <option value="{$site->class}"{if $default_torrent_site} selected{/if}>{$site->name}</option>
+                        {/foreach}
+                    </select>
                 </div>
             </div>
             <div class="panel-heading">
