@@ -58,7 +58,20 @@ class Content extends Inclusions
                 $url = null;
         }
 
-        $response = json_decode(self::get($url));
+        $cache_file = PRIVATE_PATH . $type . '-cache.json';
+
+        if (!file_exists($cache_file) || filemtime($cache_file) < (time() - 10800)) {
+            $response = self::get($url);
+            if ($response == '') {
+                $response = '{}';
+            }
+
+            file_put_contents($cache_file, $response);
+            $response = json_decode($response);
+        } else {
+            $response = json_decode(file_get_contents($cache_file));
+        }
+
         if (isset($response->results)) {
             return $response->results;
         } else {
