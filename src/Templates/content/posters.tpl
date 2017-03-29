@@ -4,7 +4,7 @@
         <div class="panel-body">
             {foreach $items as $item}
                 {if $item && $item->poster_path}
-                    <a href="/{$title}/{$item->id}" class="inline-block poster-section"
+                    <a href="/show/{$title}/{$item->id}" class="inline-block poster-section"
                        title="{if isset($item->title)}{$item->title}{else}{$item->name}{/if}">
                         <div class="poster-overlay-rating pull-right badge">
                             <span class="fa fa-fw fa-star"></span>{$item->vote_average}
