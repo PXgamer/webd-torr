@@ -48,7 +48,7 @@ class Main extends Inclusions
             [
                 'meta' => $meta,
                 'type' => ($this->route->req->args[0] == 'movies' ? 'movie' : $this->route->req->args[0]),
-                'torrents' => Content::fetchTorrents($title, $year)
+                'torrents' => $Content->fetchTorrents($title, $year)
             ]
         );
     }

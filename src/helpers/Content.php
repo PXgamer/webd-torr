@@ -3,7 +3,6 @@
 namespace pxgamer\wdTorr\helpers;
 
 use pxgamer\Generic\Inclusions;
-use pxgamer\TorrentParser\WorldWideTorrents;
 
 /**
  * Class Content
@@ -11,7 +10,8 @@ use pxgamer\TorrentParser\WorldWideTorrents;
  */
 class Content extends Inclusions
 {
-    private $tmdb_api_key = '';
+    private $tmdb_api_key;
+    private $default_torrent_site;
 
     private $base_url = 'https://api.themoviedb.org/3';
     private $default_language = 'en-GB';
@@ -24,6 +24,7 @@ class Content extends Inclusions
     {
         parent::__construct();
 
+        $this->default_torrent_site = $this->SL3->querySingle('SELECT default_torrent_site FROM settings');
         $this->tmdb_api_key = $this->SL3->querySingle('SELECT tmdb_api_key FROM settings');
         $this->end_url = '?api_key=' . $this->tmdb_api_key . '&language=' . $this->default_language;
     }
@@ -44,9 +45,13 @@ class Content extends Inclusions
      * @param string $title
      * @return array
      */
-    public static function fetchTorrents($title, $year = '')
+    public function fetchTorrents($title, $year = '')
     {
-        return WorldWideTorrents::search($title . ' ' . $year);
+        if (class_exists('\\pxgamer\\TorrentParser\\' . $this->default_torrent_site)) {
+            return ('\\pxgamer\\TorrentParser\\' . $this->default_torrent_site)::search($title . ' ' . $year);
+        } else {
+            return [];
+        }
     }
 
     /**
