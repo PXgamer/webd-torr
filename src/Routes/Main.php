@@ -40,12 +40,15 @@ class Main extends Inclusions
             header('Location: /');
         }
 
+        $title = (isset($meta->title) ? $meta->title : $meta->name);
+        $year = (isset($meta->release_date) ? $this->absolute_time($meta->release_date, 'Y') : '');
+
         $this->S->display(
             'content/show.tpl',
             [
                 'meta' => $meta,
                 'type' => ($this->route->req->args[0] == 'movies' ? 'movie' : $this->route->req->args[0]),
-                'torrents' => []
+                'torrents' => Content::fetchTorrents($title, $year)
             ]
         );
     }

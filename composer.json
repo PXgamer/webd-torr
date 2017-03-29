@@ -6,7 +6,8 @@
   "minimum-stability": "dev",
   "require": {
     "nezamy/route": "^1.0",
-    "smarty/smarty": "3.1.x"
+    "smarty/smarty": "3.1.x",
+    "pxgamer/torrent-parser-php": "v1.0.5"
   },
   "autoload": {
     "psr-4": {

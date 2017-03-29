@@ -93,5 +93,8 @@
             </li>
         </ul>
     </div>
+    <div class="panel-group">
+        {include file='content/torrents_table.tpl' torrents=$torrents}
+    </div>
 </div>
 {include file='include/footer.tpl'}

@@ -3,6 +3,7 @@
 namespace pxgamer\wdTorr\helpers;
 
 use pxgamer\Generic\Inclusions;
+use pxgamer\TorrentParser\WorldWideTorrents;
 
 /**
  * Class Content
@@ -37,6 +38,15 @@ class Content extends Inclusions
                 }
             }
         }
+    }
+
+    /**
+     * @param string $title
+     * @return array
+     */
+    public static function fetchTorrents($title, $year = '')
+    {
+        return WorldWideTorrents::search($title . ' ' . $year);
     }
 
     /**
