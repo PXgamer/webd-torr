@@ -47,6 +47,9 @@ class Router
         $route->any('/settings', function() {
             (new Routes\Settings)->setVars($this->app)->index();
         });
+        $route->any('/show/?/?', function($type, $id) {
+            (new Routes\Main)->setVars($this->app)->show($type, $id);
+        });
         $route->any('/*', function(){
 			(new Routes\Generic)->error(404, 'Oops, page not found.');
 		});

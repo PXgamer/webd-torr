@@ -25,4 +25,22 @@ class Main extends Inclusions
             ]
         );
     }
+
+    public function show($type, $id)
+    {
+        $Content = new Content();
+        $meta = $Content->meta($type, $id);
+
+        if (!$meta->id) {
+            header('Location: /');
+        }
+
+        $this->S->display(
+            'content/show.tpl',
+            [
+                'meta' => $meta,
+                'torrents' => []
+            ]
+        );
+    }
 }

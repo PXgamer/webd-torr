@@ -53,6 +53,42 @@ class Content extends Inclusions
     }
 
     /**
+     * @param string $type
+     * @param int $id
+     * @return object|boolean
+     */
+    public function meta($type, $id)
+    {
+        if ($type == 'movies') {
+            $type = 'movie';
+        }
+
+        $url = $this->base_url . '/' . $type . '/' . $id . $this->end_url;
+
+        $cache_file = PRIVATE_PATH . $type . '-' . $id . '-cache.json';
+
+        if (!file_exists($cache_file) || filemtime($cache_file) < (time() - 604800)) {
+            $response = self::get($url);
+            if ($response == '') {
+                $response = '{}';
+            }
+
+            file_put_contents($cache_file, $response);
+            $response = json_decode($response);
+        } else {
+            $response = json_decode(file_get_contents($cache_file));
+        }
+
+        if (isset($response->title)) {
+            return $response;
+        } elseif (isset($response->name)) {
+            return $response;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * @param null|string $type
      * @return array
      */
