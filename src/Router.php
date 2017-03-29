@@ -28,7 +28,8 @@ class Router
         define('SRC_PATH', ROOT_PATH.DS.'src'.DS, true);
         define('ROUTES', '\\pxgamer\\wdTorr\\Routes\\');
 
-        define('SQL_LITE_DB_PATH', ROOT_PATH . '/db.sqlite', true);
+        define('PRIVATE_PATH', ROOT_PATH . '/private', true);
+        define('SQL_LITE_DB_PATH', PRIVATE_PATH . '/db.sqlite', true);
 
         $app = App::instance();
         $app->request = Request::instance();
