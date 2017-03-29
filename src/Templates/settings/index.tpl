@@ -9,7 +9,7 @@
             <div class="panel-body">
                 <div class="form-group">
                     <label for="tmdb_key">TMDb API Key:</label>
-                    <input class="form-control" type="text" name="tmdb_key" id="tmdb_key">
+                    <input class="form-control" type="text" name="tmdb_key" id="tmdb_key" value="{$tmdb_key}">
                 </div>
             </div>
         </div>
