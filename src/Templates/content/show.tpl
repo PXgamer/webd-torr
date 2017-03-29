@@ -15,12 +15,19 @@
                 <p>{$meta->overview}</p>
             </div>
         </div>
-        {foreach $meta->genres as $genre}
-            <span class="badge">{$genre->name}</span>
-        {/foreach}
 
         <h4>Information:</h4>
         <table class="table">
+            <tr>
+                <th>Genres:</th>
+                {$i = 0}
+                <td>
+                    {if !$meta->genres}
+                        <span class="text-warning">N/A</span>
+                    {/if}
+                    {foreach $meta->genres as $item}{if $i > 0}, {/if}{$item->name}{$i=$i+1}{/foreach}
+                </td>
+            </tr>
             {if $type == 'movie'}
                 <tr>
                     <th>Release Date:</th>
