@@ -10,6 +10,7 @@ use pxgamer\wdTorr\helpers\Content;
  * @package pxgamer\wdTorr\Routes
  *
  * @property \System\Request request
+ * @property \System\Route route
  */
 class Main extends Inclusions
 {
@@ -39,6 +40,7 @@ class Main extends Inclusions
             'content/show.tpl',
             [
                 'meta' => $meta,
+                'type' => ($this->route->req->args[0] == 'movies' ? 'movie' : $this->route->req->args[0]),
                 'torrents' => []
             ]
         );
