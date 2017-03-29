@@ -19,8 +19,8 @@ class Content extends Inclusions
     {
         parent::__construct();
 
-        $tmdb_api_key = $this->SL3->querySingle('SELECT tmdb_api_key FROM settings');
-        $this->end_url = '?api_key=' . $tmdb_api_key . '&language=' . $this->default_language;
+        $this->tmdb_api_key = $this->SL3->querySingle('SELECT tmdb_api_key FROM settings');
+        $this->end_url = '?api_key=' . $this->tmdb_api_key . '&language=' . $this->default_language;
     }
 
     public function getPosters($selected = ['movies', 'tv', 'games'])
