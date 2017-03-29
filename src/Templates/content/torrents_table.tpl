@@ -1,15 +1,16 @@
-{if isset($torrents)}
+<h4>Torrents</h4>
+{if isset($torrents) && !empty($torrents)}
     <table class="table table-unstyled">
         <thead>
-            <tr>
-                <th>Title</th>
-                <th>Category</th>
-                <th>Uploaded</th>
-                <th>Size</th>
-                <th>Seeds</th>
-                <th>Leeches</th>
-                <th>Download</th>
-            </tr>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Uploaded</th>
+            <th>Size</th>
+            <th>Seeds</th>
+            <th>Leeches</th>
+            <th>Download</th>
+        </tr>
         </thead>
         <tbody>
         {foreach $torrents as $torrent}
@@ -25,4 +26,8 @@
         {/foreach}
         </tbody>
     </table>
+{else}
+    <div class="alert alert-warning">
+        <p>No torrents found.</p>
+    </div>
 {/if}
