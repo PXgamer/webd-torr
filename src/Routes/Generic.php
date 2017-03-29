@@ -6,6 +6,9 @@ use pxgamer\Generic\Inclusions;
 
 /**
  * Class Generic
+ * @package pxgamer\wdTorr\Routes
+ *
+ * @property \System\Request request
  */
 class Generic extends Inclusions
 {

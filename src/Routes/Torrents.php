@@ -4,6 +4,12 @@ namespace pxgamer\wdTorr\Routes;
 
 use pxgamer\Generic\Inclusions;
 
+/**
+ * Class Torrents
+ * @package pxgamer\wdTorr\Routes
+ *
+ * @property \System\Request request
+ */
 class Torrents extends Inclusions
 {
     public function index()

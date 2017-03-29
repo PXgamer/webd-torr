@@ -4,6 +4,10 @@ namespace pxgamer\Generic;
 
 use pxgamer\wdTorr\Smarter;
 
+/**
+ * Class Inclusions
+ * @package pxgamer\Generic
+ */
 class Inclusions
 {
     /**

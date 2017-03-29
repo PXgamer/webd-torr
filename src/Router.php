@@ -6,8 +6,10 @@ use System\App;
 use System\Request;
 use System\Route;
 
+
 /**
- * Class Router.
+ * Class Router
+ * @package pxgamer\wdTorr
  */
 class Router
 {

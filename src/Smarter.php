@@ -4,6 +4,7 @@ namespace pxgamer\wdTorr;
 
 /**
  * Class Smarter.
+ * @package pxgamer\wdTorr
  */
 class Smarter
 {

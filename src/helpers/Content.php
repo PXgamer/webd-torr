@@ -4,6 +4,10 @@ namespace pxgamer\wdTorr\helpers;
 
 use pxgamer\Generic\Inclusions;
 
+/**
+ * Class Content
+ * @package pxgamer\wdTorr\helpers
+ */
 class Content extends Inclusions
 {
     private $tmdb_api_key = '';
@@ -23,7 +27,11 @@ class Content extends Inclusions
         $this->end_url = '?api_key=' . $this->tmdb_api_key . '&language=' . $this->default_language;
     }
 
-    public function getPosters($selected = ['movies', 'tv', 'games'])
+    /**
+     * @param array $selected
+     * @return string
+     */
+    public function getPosters($selected = ['movies', 'tv'])
     {
         $content = [];
         foreach ($selected as $value) {
@@ -44,6 +52,10 @@ class Content extends Inclusions
         return $response;
     }
 
+    /**
+     * @param null|string $type
+     * @return array
+     */
     public function getLatest($type = null)
     {
         switch ($type) {
@@ -79,6 +91,10 @@ class Content extends Inclusions
         }
     }
 
+    /**
+     * @param $url
+     * @return bool|mixed
+     */
     private static function get($url)
     {
         if (!$url) {
