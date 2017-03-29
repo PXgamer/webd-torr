@@ -4,6 +4,15 @@
     <form action="/settings/" method="post">
         <div class="panel panel-default">
             <div class="panel-heading">
+                <h4>WDT Settings</h4>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="default_torrent_site">Default Torrent Site:</label>
+                    <input class="form-control" type="text" name="default_torrent_site" id="default_torrent_site" value="{$default_torrent_site}">
+                </div>
+            </div>
+            <div class="panel-heading">
                 <h4>API Interworking</h4>
             </div>
             <div class="panel-body">
