@@ -27,6 +27,41 @@ class Content extends Inclusions
         $this->end_url = '?api_key=' . $this->tmdb_api_key . '&language=' . $this->default_language;
     }
 
+    public static function clearCache()
+    {
+        if (is_dir(CACHE_PATH)) {
+            $dir = new \DirectoryIterator(CACHE_PATH);
+            foreach ($dir as $file) {
+                if ($file->valid() && $file->getExtension() == 'json') {
+                    unlink(CACHE_PATH . $dir);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param $url
+     * @return bool|mixed
+     */
+    private static function get($url)
+    {
+        if (!$url) {
+            return false;
+        }
+        $cu = curl_init();
+        curl_setopt_array(
+            $cu,
+            [
+                CURLOPT_URL => $url,
+                CURLOPT_SSL_VERIFYPEER => 0,
+                CURLOPT_SSL_VERIFYHOST => 0,
+                CURLOPT_RETURNTRANSFER => 1,
+            ]
+        );
+
+        return curl_exec($cu);
+    }
+
     /**
      * @param array $selected
      * @return string
@@ -65,7 +100,7 @@ class Content extends Inclusions
 
         $url = $this->base_url . '/' . $type . '/' . $id . $this->end_url;
 
-        $cache_file = PRIVATE_PATH . $type . '-' . $id . '-cache.json';
+        $cache_file = CACHE_PATH . $type . '-' . $id . '-cache.json';
 
         if (!file_exists($cache_file) || filemtime($cache_file) < (time() - 604800)) {
             $response = self::get($url);
@@ -106,7 +141,7 @@ class Content extends Inclusions
                 $url = null;
         }
 
-        $cache_file = PRIVATE_PATH . $type . '-cache.json';
+        $cache_file = CACHE_PATH . $type . '-cache.json';
 
         if (!file_exists($cache_file) || filemtime($cache_file) < (time() - 10800)) {
             $response = self::get($url);
@@ -125,28 +160,5 @@ class Content extends Inclusions
         } else {
             return [];
         }
-    }
-
-    /**
-     * @param $url
-     * @return bool|mixed
-     */
-    private static function get($url)
-    {
-        if (!$url) {
-            return false;
-        }
-        $cu = curl_init();
-        curl_setopt_array(
-            $cu,
-            [
-                CURLOPT_URL => $url,
-                CURLOPT_SSL_VERIFYPEER => 0,
-                CURLOPT_SSL_VERIFYHOST => 0,
-                CURLOPT_RETURNTRANSFER => 1,
-            ]
-        );
-
-        return curl_exec($cu);
     }
 }

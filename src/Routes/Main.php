@@ -16,6 +16,10 @@ class Main extends Inclusions
 {
     public function index()
     {
+        if (isset($this->request->body['refresh_cache_data'])) {
+            Content::clearCache();
+        }
+
         $Content = new Content();
         $posters = $Content->getPosters();
 

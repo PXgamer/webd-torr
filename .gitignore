@@ -2,4 +2,4 @@
 /composer.lock
 /src/Templates_c
 /private/*
-!/private/.keep
+!.keep
