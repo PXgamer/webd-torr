@@ -39,3 +39,11 @@
     margin: 0.4em 0.4em 0 0;
     background: black;
 }
+
+table.table-unstyled {
+    background: none;
+}
+
+table.table-unstyled tr td {
+    border: none;
+}

@@ -4,17 +4,19 @@
         <h1>{if isset($meta->name)}{$meta->name}{else}{$meta->title}{/if}</h1>
     </div>
     <div class="panel-group">
-        <div class="inline-block panel-group">
-            <div class="inline-block">
-                <img src="{if $meta->poster_path}//image.tmdb.org/t/p/w185/{$meta->poster_path}{else}/assets/img/poster_not_found.png{/if}"
-                     class="poster-img img-rounded"
-                     alt="{if isset($meta->title)}{$meta->title}{else}{$meta->name}{/if}">
-            </div>
-            <div class="inline-block">
-                <h4>Summary</h4>
-                <p>{$meta->overview}</p>
-            </div>
-        </div>
+        <table class="table table-unstyled">
+            <tr>
+                <td>
+                    <img src="{if $meta->poster_path}//image.tmdb.org/t/p/w185/{$meta->poster_path}{else}/assets/img/poster_not_found.png{/if}"
+                         class="poster-img img-rounded"
+                         alt="{if isset($meta->title)}{$meta->title}{else}{$meta->name}{/if}">
+                </td>
+                <td>
+                    <h4>Summary</h4>
+                    <p>{$meta->overview}</p>
+                </td>
+            </tr>
+        </table>
 
         <h4>Information:</h4>
         <table class="table">
