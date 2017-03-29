@@ -6,7 +6,7 @@
     <div class="panel-group">
         <div class="inline-block panel-group">
             <div class="inline-block">
-                <img src="//image.tmdb.org/t/p/w185/{$meta->poster_path}"
+                <img src="{if $meta->poster_path}//image.tmdb.org/t/p/w185/{$meta->poster_path}{else}/assets/img/poster_not_found.png{/if}"
                      class="poster-img img-rounded"
                      alt="{if isset($meta->title)}{$meta->title}{else}{$meta->name}{/if}">
             </div>
@@ -47,11 +47,10 @@
                     <th>Networks:</th>
                     {$i = 0}
                     <td>
-                        {foreach $meta->networks as $item}
-                            {if $i > 0}, {/if}
-                            {$i = $i++}
-                            {$item->name}
-                        {/foreach}
+                        {if !$meta->networks}
+                            <span class="text-warning">N/A</span>
+                        {/if}
+                        {foreach $meta->networks as $item}{if $i > 0}, {/if}{$item->name}{$i=$i+1}{/foreach}
                     </td>
                 </tr>
             {/if}
@@ -59,11 +58,10 @@
                 <th>Production Companies</th>
                 {$i = 0}
                 <td>
-                    {foreach $meta->production_companies as $item}
-                        {if $i > 0}, {/if}
-                        {$i = $i++}
-                        {$item->name}
-                    {/foreach}
+                    {if !$meta->production_companies}
+                        <span class="text-warning">N/A</span>
+                    {/if}
+                    {foreach $meta->production_companies as $item}{if $i > 0}, {/if}{$item->name}{$i=$i+1}{/foreach}
                 </td>
             </tr>
         </table>
