@@ -16,6 +16,10 @@ class Main extends Inclusions
 {
     public function index()
     {
+        if (isset($this->request->body['refresh_cache_data'])) {
+            Content::clearCache();
+        }
+
         $Content = new Content();
         $posters = $Content->getPosters();
 
@@ -36,12 +40,15 @@ class Main extends Inclusions
             header('Location: /');
         }
 
+        $title = (isset($meta->title) ? $meta->title : $meta->name);
+        $year = (isset($meta->release_date) ? $this->absolute_time($meta->release_date, 'Y') : '');
+
         $this->S->display(
             'content/show.tpl',
             [
                 'meta' => $meta,
                 'type' => ($this->route->req->args[0] == 'movies' ? 'movie' : $this->route->req->args[0]),
-                'torrents' => []
+                'torrents' => $Content->fetchTorrents($title, $year)
             ]
         );
     }
