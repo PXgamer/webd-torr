@@ -17,11 +17,11 @@
             <tr>
                 <td><a href="{$torrent['link']}" target="_blank">{$torrent['title']}</a></td>
                 <td>{$torrent['category']}</td>
-                <td>{$torrent['publish_date']|absolute_time:'jS M Y'}</td>
-                <td>{$torrent['size']}</td>
+                <td>{if isset($torrent['publish_date'])}{$torrent['publish_date']|absolute_time:'jS M Y'}{else}{$torrent['pubDate']|absolute_time:'jS M Y'}{/if}</td>
+                <td>{$torrent['size']|file_size}</td>
                 <td>{$torrent['seeders']}</td>
                 <td>{$torrent['leechers']}</td>
-                <td><a href="{$torrent['magnet']}"><span class="fa fa-fw fa-rotate-180 fa-magnet"></span></a></td>
+                <td><a href="{if isset($torrent['magnetURI'])}{$torrent['magnetURI']}{else}{$torrent['magnet']}{/if}"><span class="fa fa-fw fa-rotate-180 fa-magnet"></span></a></td>
             </tr>
         {/foreach}
         </tbody>
