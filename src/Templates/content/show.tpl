@@ -22,12 +22,8 @@
         <table class="table">
             <tr>
                 <th>Genres:</th>
-                {$i = 0}
                 <td>
-                    {if !$meta->genres}
-                        <span class="text-warning">N/A</span>
-                    {/if}
-                    {foreach $meta->genres as $item}{if $i > 0}, {/if}{$item->name}{$i=$i+1}{/foreach}
+                    {foreach $meta->genres as $item}{$item->name}{if $item !== $meta->genres|@end}, {/if}{foreachelse}No genres found.{/foreach}
                 </td>
             </tr>
             {if $type == 'movie'}
@@ -54,12 +50,8 @@
                 </tr>
                 <tr>
                     <th>Networks:</th>
-                    {$i = 0}
                     <td>
-                        {if !$meta->networks}
-                            <span class="text-warning">N/A</span>
-                        {/if}
-                        {foreach $meta->networks as $item}{if $i > 0}, {/if}{$item->name}{$i=$i+1}{/foreach}
+                        {foreach $meta->networks as $item}{$item->name}{if $item !== $meta->networks|@end}, {/if}{foreachelse}No networks found.{/foreach}
                     </td>
                 </tr>
             {/if}
@@ -67,10 +59,7 @@
                 <th>Production Companies</th>
                 {$i = 0}
                 <td>
-                    {if !$meta->production_companies}
-                        <span class="text-warning">N/A</span>
-                    {/if}
-                    {foreach $meta->production_companies as $item}{if $i > 0}, {/if}{$item->name}{$i=$i+1}{/foreach}
+                    {foreach $meta->production_companies as $item}{$item->name}{if $item !== $meta->production_companies|@end}, {/if}{foreachelse}No production companies found.{/foreach}
                 </td>
             </tr>
         </table>
